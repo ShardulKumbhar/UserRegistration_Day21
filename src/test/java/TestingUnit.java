@@ -4,108 +4,101 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import userregistration.UserRegistration;
+import userregistration.UserRegistrationException;
 
 
 public class TestingUnit {
 	/**
 	 * STEPS
-	 * ==============================================
-	 * 1.created object of class
-	 * 2.takeng sample email to test
-	 * 3.common steps to tests
-	 * 4. testing all valid email by applying loop
-	 * 5.testing all unvalidemail by applying loop
-	 * ================================================
+	 * ======================================================
+	 * 1.checking wether first name is valid or invalid
+	 * 2.checking weather last name is valid or invalid
+	 * 3.checking wether phone number is valid or invalid
+	 * 4.checking wether password is valid or invalid
+	 * 5. checking wether email is valid or invalid
+	 * ======================================================
 	 */
-
-	
-            /*
-             * 1.created object of class
-             */
-	UserRegistration userReg = new UserRegistration();
-
 	
 	/*
-	 * 2.takeng sample email to test
-	 * storing in String valid / unvalid emails
+	 * 1.checking wether name is valid or invalid
 	 */
-	
-	public String[] validemail = { "abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@abc.com",
-			"abc-100@abc.net", "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com" };
-
-	public String[] unvalidemail = { "abc", "abc@.com.my", "abc123@gmail.a", "abc123@.com", "abc123@.com.com",
-			"..abc@abc.com", ".abc()@gmail.com", "abc@%.com", "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a",
-			"abc@gmail.com.aa.au" };
-
-
-
-
-	/*
-	 * 3.common steps to tests
-	 * ====================================================
-	 * testing first name
-	 * taking boolean output
-	 * calling method to check pattern and matcher
-	 * comparing output with assertequals 
-	 * ====================================================
-	 */
-	@Test
-	public void firstName() {
-		boolean result = userReg.validateFirstName("Shardul");
-		assertEquals(true, result);
-	}
 
 	@Test
-	public void lastName() {
-		boolean result = userReg.validateLastName("Kumbhar");
-		assertEquals(true, result);
-	}
+	public void firstNames() {
 
-	@Test
-	public void phoneNumber() {
-		boolean result = userReg.validatePhoneNumber("91 7709125030");
-		assertEquals(true, result);
-	}
+		UserRegistration userReg = new UserRegistration("Shardul");
 
-	@Test
-	public void password() {
-		boolean result = userReg.validatePassword("Kumbhar@123");
-		assertEquals(true, result);
-	}
+		try {
+			boolean result = userReg.validateFirstName();
+		} catch (UserRegistrationException e) {
 
-	@Test
-	public void email() {
-		boolean result = userReg.validateEmail("yahhoo@123.com");
-		assertEquals(true, result);
-	}
-	
-	
-	/*
-	 *4. testing all valid email by applying loop
-	 */
-	@Test
-	public void validEmailTest() {
-		for (String sample : validemail) {
-
-			String checker1 = sample;
-
-			Boolean email = userReg.validateEmail(checker1);
-			assertEquals(true, email);
+			System.out.println(e);
 		}
 
 	}
 
 	/*
-	 * 5.testing all unvalidemail by applying loop
+	 * 2.checking weather  last name is valid or invalid
+	 */
+
+	@Test
+	public void lastName() {
+		UserRegistration userReg = new UserRegistration("Kumbhar");
+		try {
+			boolean result = userReg.validateLastName();
+		} catch (UserRegistrationException e) {
+
+			// e.printStackTrace();
+
+			System.out.println(e);
+		}
+	}
+
+	/*
+	 * 3.checking wether phone number is valid or invalid
 	 */
 	@Test
-	public void unvalidEmailTest() {
+	public void phoneNumber() {
+		UserRegistration userReg = new UserRegistration("91 7709125030");
+		try {
+			boolean result = userReg.validatePhoneNumber();
+		} catch (UserRegistrationException e) {
 
-		for (String sample : unvalidemail) {
-			String checker1 = sample;
+			// e.printStackTrace();
 
-			Boolean email = userReg.validateEmail(checker1);
-			assertEquals(false, email);
+			System.out.println(e);
+		}
+	}
+
+	/*
+	 * 4.checking wether password is valid or invalid
+	 */
+	@Test
+	public void password() {
+		UserRegistration userReg = new UserRegistration("Shar%123");
+		try {
+			boolean result = userReg.validatePassword();
+		} catch (UserRegistrationException e) {
+
+			// e.printStackTrace();
+
+			System.out.println(e);
+		}
+	}
+
+	/*
+	 *5. checking wether email is valid or invalid
+	 */
+	@Test
+	public void email() {
+		UserRegistration userReg = new UserRegistration("shardul22@111gmail.com");
+		try {
+			boolean result = userReg.validateEmail();
+		} catch (UserRegistrationException e) {
+
+			// e.printStackTrace();
+
+			System.out.println(e);
 		}
 	}
 
