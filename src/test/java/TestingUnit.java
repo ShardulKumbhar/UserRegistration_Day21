@@ -7,6 +7,16 @@ import userregistration.UserRegistration;
 
 
 public class TestingUnit {
+	/**
+	 * STEPS
+	 * ==============================================
+	 * 1.created object of class
+	 * 2.takeng sample email to test
+	 * 3.common steps to tests
+	 * 4. testing all valid email by applying loop
+	 * 5.testing all unvalidemail by applying loop
+	 * ================================================
+	 */
 
 	
             /*
@@ -14,8 +24,24 @@ public class TestingUnit {
              */
 	UserRegistration userReg = new UserRegistration();
 
+	
 	/*
-	 * common steps
+	 * 2.takeng sample email to test
+	 * storing in String valid / unvalid emails
+	 */
+	
+	public String[] validemail = { "abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@abc.com",
+			"abc-100@abc.net", "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com" };
+
+	public String[] unvalidemail = { "abc", "abc@.com.my", "abc123@gmail.a", "abc123@.com", "abc123@.com.com",
+			"..abc@abc.com", ".abc()@gmail.com", "abc@%.com", "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a",
+			"abc@gmail.com.aa.au" };
+
+
+
+
+	/*
+	 * 3.common steps to tests
 	 * ====================================================
 	 * testing first name
 	 * taking boolean output
@@ -53,6 +79,34 @@ public class TestingUnit {
 		assertEquals(true, result);
 	}
 	
+	
+	/*
+	 *4. testing all valid email by applying loop
+	 */
+	@Test
+	public void validEmailTest() {
+		for (String sample : validemail) {
 
+			String checker1 = sample;
+
+			Boolean email = userReg.validateEmail(checker1);
+			assertEquals(true, email);
+		}
+
+	}
+
+	/*
+	 * 5.testing all unvalidemail by applying loop
+	 */
+	@Test
+	public void unvalidEmailTest() {
+
+		for (String sample : unvalidemail) {
+			String checker1 = sample;
+
+			Boolean email = userReg.validateEmail(checker1);
+			assertEquals(false, email);
+		}
+	}
 
 }

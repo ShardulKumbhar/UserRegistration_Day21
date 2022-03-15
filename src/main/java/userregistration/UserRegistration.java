@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
+	/**
+	 * PROCEDURE
+	 * ==============================================
+	 * 1.created varous patterns to match
+	 * 2.created method to check first name
+	 * 3.created method to check last name
+	 * 4. created method to check email
+	 * 5.created method to check phone number
+	 * 6. created method to check password
+	 * ================================================
+	 */
 	
 	/*
 	 * 1.created varous patterns to match
