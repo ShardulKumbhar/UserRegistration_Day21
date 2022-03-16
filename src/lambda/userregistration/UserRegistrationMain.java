@@ -10,6 +10,9 @@ public class UserRegistrationMain {
 	 */
 	@FunctionalInterface
 	interface DataValidate {
+		/*
+		 * created abstract method
+		 */
 		void Validator();
 	}
 
@@ -41,17 +44,20 @@ public class UserRegistrationMain {
 		/*
 		 * COMMON STEPS 
 		 * ---------------------------------
+		 * created reference for interface and used lambda expression
 		 * 1.Created a Pattern
 		 * 2.Taking User input 
 		 * 3.defining Pattern and Matcher 
 		 * 4.Checking valid or not
+		 * 5. validiting with interface
 		 * ---------------------------------
 		 */
+ 
 		DataValidate firstName = () -> {
 
 			String regex = "^[A-Z]{1}[a-z]{2,}$";
 
-			System.out.println("Enter your First name");
+			System.out.println("\nEnter your First name");
 			String name = sc.next();
 
 			Pattern pattern = Pattern.compile(regex);
@@ -64,6 +70,7 @@ public class UserRegistrationMain {
 			}
 		};
 
+		
 		firstName.Validator();
 
 				/*
@@ -73,7 +80,7 @@ public class UserRegistrationMain {
 
 			String regex = "^[A-Z]{1}[a-z]{2,}$";
 
-			System.out.println("Enter your last name");
+			System.out.println("\nEnter your last name");
 			String name = sc.next();
 
 			Pattern pattern = Pattern.compile(regex);
@@ -85,6 +92,9 @@ public class UserRegistrationMain {
 			}
 		};
 
+		/*
+		 * 
+		 */
 		lastName.Validator();
 
 		/*
@@ -92,7 +102,7 @@ public class UserRegistrationMain {
 		 */
 		DataValidate eMail = () -> {
 
-			System.out.println("Enter your Email id");
+			System.out.println("\nEnter your Email id");
 			String email = sc.next();
 
 			Pattern pattern = Pattern
@@ -112,7 +122,7 @@ public class UserRegistrationMain {
 		 */
 		DataValidate Mobile = () -> {
 
-			System.out.println("Enter your Mobile number");
+			System.out.println("\nEnter your Mobile number");
 			String mobile = sc.nextLine();
 
 			Pattern pattern = Pattern.compile("^[0-9]{2}[ ]?[6-9]{1}[0-9]{9}$");
@@ -131,7 +141,7 @@ public class UserRegistrationMain {
 		 */
 		DataValidate Password = () -> {
 
-			System.out.println("Enter your Password");
+			System.out.println("\nEnter your Password");
 			String password = sc.next();
 
 			Pattern pattern = Pattern.compile("^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$");
